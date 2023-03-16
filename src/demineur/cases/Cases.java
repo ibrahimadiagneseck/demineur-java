@@ -7,9 +7,7 @@ import javax.swing.*;
 import demineur.graphisme.Graphisme;
 
 
-
 public class Cases extends JPanel implements MouseListener {
-
 
 	private static final long serialVersionUID = 1L;
 	
@@ -21,7 +19,7 @@ public class Cases extends JPanel implements MouseListener {
 	 * 3 => vide avec nombre de bombes autour, 
 	 * 4 => vide avec nombre de bombes autour
 	 ***********************************************************/
-	private int etat = 0; 
+	private int etatCase = 0; 
 	
 	private boolean contientMine = false;
 	
@@ -59,32 +57,31 @@ public class Cases extends JPanel implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {}
 
-	//Selectionne la case si on clique dessus
 	public void mousePressed(MouseEvent e) {
-		
-		if (e.getModifiersEx() == 16 && etat != 1 && etat != 2 && !this.caseBloquee) {
-			caseSelectionnee = true;
+		//Selectionne la case si on clique dessus
+		if (e.getModifiersEx() == 16 && etatCase != 1 && etatCase != 2 && !this.caseBloquee) {
+			this.caseSelectionnee = true;
 			repaint();
 		}
 	}
 
-	//Déselectionne la case si on relâche le clique
 	public void mouseReleased(MouseEvent e) {
-		caseSelectionnee = false;
+		//Déselectionne la case si on relâche le clique
+		this.caseSelectionnee = false;
 		repaint();
 	}
 
 	public void mouseEntered(MouseEvent e) {
 		//Affiche la case si on passe la souris dessus
-		if (e.getModifiersEx() == 16 && etat != 1 && etat != 2 && !this.caseBloquee) {
-			caseSelectionnee = true;
+		if (e.getModifiersEx() == 16 && this.etatCase != 1 && this.etatCase != 2 && !this.caseBloquee) {
+			this.caseSelectionnee = true;
 			repaint();
 		}
 	}
 
 	public void mouseExited(MouseEvent e) {
 		//Déselectionne la case si on quitte la souris
-		caseSelectionnee = false;
+		this.caseSelectionnee = false;
 		repaint();
 	}
 
@@ -92,72 +89,80 @@ public class Cases extends JPanel implements MouseListener {
 		return this.contientMine;
 	}
 
-	public int getEtat() {
-		return etat;
+	public int getEtatCase() {
+		return this.etatCase;
 	}
 
-	public void setEtat(int etat) {
-		this.etat = etat;
+	public void setEtatCase(int etatCase) {
+		this.etatCase = etatCase;
 	}
 
 	public void setMine(boolean contientMine) {
 		this.contientMine = contientMine;
 	}
 
-	public int getChiffre() {
+	public int getBombesAutour() {
 		return this.bombesAutour;
 	}
 
-	public void setChiffre(int bombesAutour) {
+	public void setBombesAutour(int bombesAutour) {
 		this.bombesAutour = bombesAutour;
 	}
 
 	public boolean isSelected() {
-		return caseSelectionnee;
+		return this.caseSelectionnee;
 	}
 
-	public void setSelected(boolean selected) {
-		this.caseSelectionnee = selected;
+	public void setCaseSelectionnee(boolean caseSelectionnee) {
+		this.caseSelectionnee = caseSelectionnee;
 		this.paintComponent(this.getGraphics());
 	}
 
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		if (graphisme != null) {
-			if (!caseSelectionnee) { // si la case n'est pas sélectionnée
-				if (etat == 0) { // si la case est vide
-					g.setColor(Color.white); //bordure haut et gauche blanche
-					g.drawLine(0, 0, 0, 15);
-					g.drawLine(0, 0, 15, 0);
+	public void paintComponent(Graphics graphics) {
+		
+		super.paintComponent(graphics);
+		
+		if (this.graphisme != null) {
+			
+			if (!this.caseSelectionnee) { 
+				
+				if (this.etatCase == 0) {
+					graphics.setColor(Color.white); //bordure haut et gauche blanche
+					graphics.drawLine(0, 0, 0, 15);
+					graphics.drawLine(0, 0, 15, 0);
 				}
-				else if (etat == 1) g.drawImage(Graphisme.chiffre[this.bombesAutour], 0, 0, null); //chiffre ou blanc
-				else if (etat == 2) g.drawImage(Graphisme.drapeau, 0, 0, null); //drapeau
-				else if (etat == 6) g.drawImage(Graphisme.erreur, 0, 0, null); //erreur de drapeau
-				else if (etat == 3) g.drawImage(Graphisme.question, 0, 0, null); //?
-				else if (etat == 4) g.drawImage(Graphisme.boum, 0, 0, null); //mine sur fond rouge
-				else if (etat == 5) g.drawImage(Graphisme.mine, 0, 0, null); //mine
-			}
-			else { // si la case est sélectionnée
-				if (etat == 3) g.drawImage(Graphisme.questionSel, 0, 0, null); //?
-				else if (etat != 1) { // du reste du programme
-					g.setColor(Color.gray); //bordure haut et gauche grise
-					g.drawLine(0, 0, 0, 15);
-					g.drawLine(0, 0, 15, 0);
+				else if (this.etatCase == 1) graphics.drawImage(Graphisme.chiffre[this.bombesAutour], 0, 0, null); // chiffre ou blanc
+				else if (this.etatCase == 2) graphics.drawImage(Graphisme.drapeau, 0, 0, null); // drapeau
+				else if (this.etatCase == 6) graphics.drawImage(Graphisme.erreur, 0, 0, null); // erreur de drapeau
+				else if (this.etatCase == 3) graphics.drawImage(Graphisme.question, 0, 0, null); // ?
+				else if (this.etatCase == 4) graphics.drawImage(Graphisme.boum, 0, 0, null); // mine sur fond rouge
+				else if (this.etatCase == 5) graphics.drawImage(Graphisme.mine, 0, 0, null); // mine
+			
+			} else { 
+				
+				if (this.etatCase == 3) {
+					graphics.drawImage(Graphisme.questionSel, 0, 0, null); // ?
+				} else if (this.etatCase != 1) {
+					graphics.setColor(Color.gray); //bordure haut et gauche grise
+					graphics.drawLine(0, 0, 0, 15);
+					graphics.drawLine(0, 0, 15, 0);
 				}
+				
 			}
-		}
-		//else System.out.println("gr == null");
-		g.setColor(Color.darkGray); //bordure bas et droite
-		g.drawLine(0, 15, 15, 15);
-		g.drawLine(15, 0, 15, 15);
-		g.dispose();
+			
+		} else System.out.println("graphics == null");
+		
+		graphics.setColor(Color.darkGray); //bordure bas et droite
+		graphics.drawLine(0, 15, 15, 15);
+		graphics.drawLine(15, 0, 15, 15);
+		graphics.dispose();
 	}
 
 	public void setBlocked(boolean blocked) {
 		this.caseBloquee = blocked;
 	}
 
-	public boolean isBlocked() {
+	public boolean estCaseBloquee() {
 		return this.caseBloquee;
 	}
 
@@ -166,9 +171,9 @@ public class Cases extends JPanel implements MouseListener {
 	}
 
 
-	// remet la case à 0
 	public void reset() { 
-		this.etat = 0;
+
+		this.etatCase = 0;
 		this.caseSelectionnee = false;
 		setMine(false);
 		setBlocked(false);

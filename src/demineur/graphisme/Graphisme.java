@@ -94,8 +94,7 @@ public class Graphisme {
     //question
     question = gr.createCompatibleVolatileImage(16, 16);
     g = (Graphics2D) question.getGraphics();
-    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                       RenderingHints.VALUE_ANTIALIAS_ON);
+    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     g.setStroke(new BasicStroke(1.2f));
     g.setColor(dessus);
     g.fillRect(0, 0, 16, 16);
