@@ -288,7 +288,7 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 			for(int j = 0; j < this.nombreCasesLargeur; j++) {
 
 				// Vérifier si la case actuelle ne contient pas de mine
-				if (!casesJeux[i][j].isMine()) {
+				if (!casesJeux[i][j].contientMine()) {
 
 					int n = 0; // Initialiser un compteur de mines adjacentes
 
@@ -297,35 +297,35 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 					 * Utilisons un try catch car ces cases voisines n'existent pas forcement.
 					 */
 					try {
-						if (casesJeux[i - 1][j - 1].isMine()) n++;
+						if (casesJeux[i - 1][j - 1].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					try {
-						if (casesJeux[i - 1][j].isMine()) n++;
+						if (casesJeux[i - 1][j].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					try {
-						if (casesJeux[i - 1][j + 1].isMine()) n++;
+						if (casesJeux[i - 1][j + 1].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					try {
-						if (casesJeux[i][j - 1].isMine()) n++;
+						if (casesJeux[i][j - 1].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					try {
-						if (casesJeux[i][j + 1].isMine()) n++;
+						if (casesJeux[i][j + 1].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					try {
-						if (casesJeux[i + 1][j - 1].isMine()) n++;
+						if (casesJeux[i + 1][j - 1].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					try {
-						if (casesJeux[i + 1][j].isMine()) n++;
+						if (casesJeux[i + 1][j].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					try {
-						if (casesJeux[i + 1][j + 1].isMine()) n++;
+						if (casesJeux[i + 1][j + 1].contientMine()) n++;
 					} catch (java.lang.ArrayIndexOutOfBoundsException e) {}
 
 					// Mettre à jour la case actuelle avec le nombre de mines adjacentes
@@ -734,7 +734,7 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		
 		//Si la case est normale ou avec un ?
 		if ((casesJeux[y][x].getEtatCase() == 0 || casesJeux[y][x].getEtatCase() == 3) 
-				&& !casesJeux[y][x].isMine()) {
+				&& !casesJeux[y][x].contientMine()) {
 			
 			this.nombreCasesNonDecouvertes--; //nombre de cases non decouvertes
 			
@@ -778,7 +778,7 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 			}
 		
 		} else if ((casesJeux[y][x].getEtatCase() == 0 || casesJeux[y][x].getEtatCase() == 3) 
-				&& casesJeux[y][x].isMine()) { //Si on clique sur une mine
+				&& casesJeux[y][x].contientMine()) { //Si on clique sur une mine
 			
 			temps.cancel(); //fin du timer
 			
@@ -791,7 +791,7 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 				for (int j = 0; j < this.nombreCasesLargeur; j++) {
 					
 					casesJeux[i][j].removeMouseListener(this); //on bloque les cases
-					casesJeux[i][j].setBlocked(true);
+					casesJeux[i][j].setCaseBloquee(true);
 					
 					if (!(y == i && x == j) 
 							&& mines.charAt(i * this.nombreCasesLargeur + j) == '1' 
@@ -809,7 +809,7 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 				
 				for (int j = 0; j < this.nombreCasesLargeur; j++) {
 					
-					if (casesJeux[i][j].getEtatCase() == 2 && !casesJeux[i][j].isMine()) {
+					if (casesJeux[i][j].getEtatCase() == 2 && !casesJeux[i][j].contientMine()) {
 						casesJeux[i][j].setEtatCase(6);
 					}
 				}
@@ -831,9 +831,9 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 				for (int j = 0; j < this.nombreCasesLargeur; j++) {
 					
 					casesJeux[i][j].removeMouseListener(this); //on bloque les cases
-					casesJeux[i][j].setBlocked(true);
+					casesJeux[i][j].setCaseBloquee(true);
 					
-					if (casesJeux[i][j].isMine()) {
+					if (casesJeux[i][j].contientMine()) {
 						casesJeux[i][j].setEtatCase(2); //on affiche les mines
 					}
 				}

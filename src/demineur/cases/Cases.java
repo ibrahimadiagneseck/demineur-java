@@ -85,7 +85,7 @@ public class Cases extends JPanel implements MouseListener {
 		repaint();
 	}
 
-	public boolean isMine() {
+	public boolean contientMine() {
 		return this.contientMine;
 	}
 
@@ -109,7 +109,7 @@ public class Cases extends JPanel implements MouseListener {
 		this.bombesAutour = bombesAutour;
 	}
 
-	public boolean isSelected() {
+	public boolean estSelectionnee() {
 		return this.caseSelectionnee;
 	}
 
@@ -141,7 +141,7 @@ public class Cases extends JPanel implements MouseListener {
 			} else { 
 				
 				if (this.etatCase == 3) {
-					graphics.drawImage(Graphisme.questionSel, 0, 0, null); // ?
+					graphics.drawImage(Graphisme.questionSelectionnee, 0, 0, null); // ?
 				} else if (this.etatCase != 1) {
 					graphics.setColor(Color.gray); //bordure haut et gauche grise
 					graphics.drawLine(0, 0, 0, 15);
@@ -158,8 +158,8 @@ public class Cases extends JPanel implements MouseListener {
 		graphics.dispose();
 	}
 
-	public void setBlocked(boolean blocked) {
-		this.caseBloquee = blocked;
+	public void setCaseBloquee(boolean caseBloquee) {
+		this.caseBloquee = caseBloquee;
 	}
 
 	public boolean estCaseBloquee() {
@@ -172,11 +172,11 @@ public class Cases extends JPanel implements MouseListener {
 
 
 	public void reset() { 
-
+		
 		this.etatCase = 0;
 		this.caseSelectionnee = false;
 		setMine(false);
-		setBlocked(false);
+		this.setCaseBloquee(false);
 		//repaint();
 	}
 
