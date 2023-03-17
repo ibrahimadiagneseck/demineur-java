@@ -135,7 +135,7 @@ public class Cases extends JPanel implements MouseListener {
 				else if (this.etatCase == 2) graphics.drawImage(Graphisme.drapeau, 0, 0, null); // drapeau
 				else if (this.etatCase == 6) graphics.drawImage(Graphisme.erreur, 0, 0, null); // erreur de drapeau
 				else if (this.etatCase == 3) graphics.drawImage(Graphisme.question, 0, 0, null); // ?
-				else if (this.etatCase == 4) graphics.drawImage(Graphisme.boum, 0, 0, null); // mine sur fond rouge
+				else if (this.etatCase == 4) graphics.drawImage(Graphisme.explosion, 0, 0, null); // mine sur fond rouge
 				else if (this.etatCase == 5) graphics.drawImage(Graphisme.mine, 0, 0, null); // mine
 			
 			} else { 

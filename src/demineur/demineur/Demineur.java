@@ -86,9 +86,11 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 	 * ils sont ajoutés à un menu déroulant ou à une barre de menus pour offrir des options 
 	 * ou des paramètres personnalisables à l'utilisateur.
 	 ***************************************************************************************/
-	JCheckBoxMenuItem menuFacile = new JCheckBoxMenuItem("Facile");
-	JCheckBoxMenuItem menuMoyenne = new JCheckBoxMenuItem("moyenne");
-	JCheckBoxMenuItem menuDifficile = new JCheckBoxMenuItem("Difficile");
+	JCheckBoxMenuItem menuSauvegarder = new JCheckBoxMenuItem("Sauvegarder");
+	JCheckBoxMenuItem menuStatistiques = new JCheckBoxMenuItem("Statistiques");
+	JCheckBoxMenuItem menuDebutant = new JCheckBoxMenuItem("Débutant");
+	JCheckBoxMenuItem menuIntermediaire = new JCheckBoxMenuItem("Intermédiaire");
+	JCheckBoxMenuItem menuExpert = new JCheckBoxMenuItem("Expert");
 	JCheckBoxMenuItem menuPersonaliser = new JCheckBoxMenuItem("Personaliser");
 
 	/********************************************************************************
@@ -175,9 +177,9 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		/*****************************************
 		 * selection du mode choisi dans le JMenu
 		 *****************************************/
-		if (niveau == 1) menuFacile.setSelected(true);
-		if (niveau == 2) menuMoyenne.setSelected(true);
-		if (niveau == 3) menuDifficile.setSelected(true);
+		if (niveau == 1) menuDebutant.setSelected(true);
+		if (niveau == 2) menuIntermediaire.setSelected(true);
+		if (niveau == 3) menuExpert.setSelected(true);
 		if (niveau == 4) menuPersonaliser.setSelected(true);
 
 
@@ -373,14 +375,14 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		menuNouveau.addActionListener(this);
 		menuNouveau.setMnemonic('N');
 		
-		menuFacile.addActionListener(this);
-		menuFacile.setMnemonic('F');
+		menuDebutant.addActionListener(this);
+		menuDebutant.setMnemonic('F');
 		
-		menuMoyenne.addActionListener(this);
-		menuMoyenne.setMnemonic('M');
+		menuIntermediaire.addActionListener(this);
+		menuIntermediaire.setMnemonic('M');
 		
-		menuDifficile.addActionListener(this);
-		menuDifficile.setMnemonic('D');
+		menuExpert.addActionListener(this);
+		menuExpert.setMnemonic('D');
 		
 		menuPersonaliser.addActionListener(this);
 		menuPersonaliser.setMnemonic('P');
@@ -389,9 +391,12 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		
 		partie.add(menuNouveau);
 		partie.add(new JSeparator());
-		partie.add(menuFacile);
-		partie.add(menuMoyenne);
-		partie.add(menuDifficile);
+		partie.add(menuDebutant);
+		partie.add(menuIntermediaire);
+		partie.add(menuExpert);
+		partie.add(new JSeparator());
+		partie.add(menuSauvegarder);
+		partie.add(menuStatistiques);
 		partie.add(new JSeparator());
 		partie.add(menuPersonaliser);
 		
@@ -914,38 +919,38 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		if (e.getSource() == menuNouveau) {
 			nouveaucasesJeux();
 			
-		} else if (e.getSource() == menuFacile && niveau != 1) {
+		} else if (e.getSource() == menuDebutant && niveau != 1) {
 			
 			this.dispose(); // on detruit la fenetre
 			System.gc();
-			if (niveau == 1) menuFacile.setSelected(true);
+			if (niveau == 1) menuDebutant.setSelected(true);
 			new Demineur(8, 8, 10, 1); //et on en refait une
 			
-		} else if (e.getSource() == menuFacile && !menuFacile.isSelected()) {
+		} else if (e.getSource() == menuDebutant && !menuDebutant.isSelected()) {
 			
-			menuFacile.setSelected(true);
+			menuDebutant.setSelected(true);
 			
-		} else if (e.getSource() == menuMoyenne && niveau != 2) {
+		} else if (e.getSource() == menuIntermediaire && niveau != 2) {
 			
 			this.dispose(); // on detruit la fenetre
 			System.gc();
-			if (niveau == 2) menuMoyenne.setSelected(true);
+			if (niveau == 2) menuIntermediaire.setSelected(true);
 			new Demineur(16, 16, 40, 2);
 			
-		} else if (e.getSource() == menuMoyenne && !menuMoyenne.isSelected()) {
+		} else if (e.getSource() == menuIntermediaire && !menuIntermediaire.isSelected()) {
 			
-			menuMoyenne.setSelected(true);
+			menuIntermediaire.setSelected(true);
 			
-		} else if (e.getSource() == menuDifficile && niveau != 3) {
+		} else if (e.getSource() == menuExpert && niveau != 3) {
 			
 			this.dispose(); // on detruit la fenetre
 			System.gc();
-			if (niveau == 3) menuDifficile.setSelected(true);
+			if (niveau == 3) menuExpert.setSelected(true);
 			new Demineur(16, 30, 99, 3);
 			
-		} else if (e.getSource() == menuDifficile && niveau != 4) {
+		} else if (e.getSource() == menuExpert && niveau != 4) {
 			
-			menuDifficile.setSelected(true);
+			menuExpert.setSelected(true);
 			
 		} else if (e.getSource() == menuPersonaliser) {
 			

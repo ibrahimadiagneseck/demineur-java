@@ -69,7 +69,7 @@ public class Apropos extends JDialog implements ActionListener {
 		titre.setPreferredSize(new Dimension(180, 50));
 		titre.setText("Evite les mines");
 		
-		this.auteurs.setFont(new java.awt.Font("Dialog", 0, 22));
+		this.auteurs.setFont(new java.awt.Font("Dialog", 0, 18));
 		this.auteurs.setForeground(Color.white);
 		this.auteurs.setPreferredSize(new Dimension(450, 22));
 		this.auteurs.setText("Réalisé par Ibrahima Diagne Seck et Oumou Hawa Diallo");
