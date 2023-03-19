@@ -13,7 +13,7 @@ public class Segment extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	/**********************************************************
+	/**************************************************************
 	 * table de verite des segments (7) de chaque chiffre :
 	 * 
 	 * 3 chiffres à 7 segments :
@@ -37,14 +37,15 @@ public class Segment extends JPanel {
 			{false, true, true, false, false, true, false},  // 7
 			{true, true, true, true, true, true, true},      // 8
 			{true, true, true, false, true, true, true}      // 9
+			
 	};
 	
 	private int valeur; 
 	
-	final private Color AFFICHE = new Color(255,0,0); // segment allumé avec une couleur rouge vif
-	final private Color CACHE = new Color(80,0,0); // segment eteint avec une nuance de rouge plus foncée
+	final private Color affiche = new Color(255,0,0); // segment allumé avec une couleur rouge vif
+	final private Color cache = new Color(80,0,0); // segment eteint avec une nuance de rouge plus foncée
 	
-	private Border border1;
+	private Border border;
 
 	public Segment() {
 		
@@ -59,7 +60,7 @@ public class Segment extends JPanel {
 	
 	private void jbInit() throws Exception {
 		
-		border1 = BorderFactory.createBevelBorder(
+		this.border = BorderFactory.createBevelBorder(
 									BevelBorder.LOWERED,
 									Color.white,
 									Color.white,
@@ -67,7 +68,7 @@ public class Segment extends JPanel {
 									Color.gray);
 		
 		this.setBackground(Color.black);
-		this.setBorder(border1);
+		this.setBorder(this.border);
 		this.setPreferredSize(new Dimension(49,27));
 	}
 	
@@ -112,9 +113,9 @@ public class Segment extends JPanel {
 			int n = segments[i];
 			
 			if (chiffres[n][0] == true) {
-				graphics2D.setColor(AFFICHE);
+				graphics2D.setColor(this.affiche);
 			} else {
-				graphics2D.setColor(CACHE);
+				graphics2D.setColor(this.cache);
 			}
 			
 			// segment 1
@@ -123,9 +124,9 @@ public class Segment extends JPanel {
 			graphics2D.drawLine(5+i*15, 5, 5+i*15, 10);
 
 			if (chiffres[n][1] == true) {
-				graphics2D.setColor(AFFICHE);
+				graphics2D.setColor(this.affiche);
 			} else {
-				graphics2D.setColor(CACHE);
+				graphics2D.setColor(this.cache);
 			}
 			
 			// segment 2
@@ -134,9 +135,9 @@ public class Segment extends JPanel {
 			graphics2D.drawLine(6+i*15, 4, 11+i*15, 4);
 
 			if (chiffres[n][2]==true) {
-				graphics2D.setColor(AFFICHE);
+				graphics2D.setColor(this.affiche);
 			} else {
-				graphics2D.setColor(CACHE);
+				graphics2D.setColor(this.cache);
 			}
 			
 			// segment 3
@@ -145,9 +146,9 @@ public class Segment extends JPanel {
 			graphics2D.drawLine(14+i*15, 3, 14+i*15, 12);
 
 			if (chiffres[n][3]==true) {
-				graphics2D.setColor(AFFICHE);
+				graphics2D.setColor(this.affiche);
 			} else {
-				graphics2D.setColor(CACHE);
+				graphics2D.setColor(this.cache);
 			}
 			
 			// segment 4
@@ -156,9 +157,9 @@ public class Segment extends JPanel {
 			graphics2D.drawLine(5+i*15, 16, 5+i*15, 20);
 
 			if (chiffres[n][4]==true) {
-				graphics2D.setColor(AFFICHE);
+				graphics2D.setColor(this.affiche);
 			} else {
-				graphics2D.setColor(CACHE);
+				graphics2D.setColor(this.cache);
 			}
 
 			// segment 5
@@ -167,9 +168,9 @@ public class Segment extends JPanel {
 			graphics2D.drawLine(4+i*15, 23, 13+i*15, 23);
 
 			if (chiffres[n][5]==true) {
-				graphics2D.setColor(AFFICHE);
+				graphics2D.setColor(this.affiche);
 			} else {
-				graphics2D.setColor(CACHE);
+				graphics2D.setColor(this.cache);
 			}
 
 			// segment 6
@@ -179,9 +180,9 @@ public class Segment extends JPanel {
 				
 
 			if (chiffres[n][6]==true) {
-				graphics2D.setColor(AFFICHE);
+				graphics2D.setColor(this.affiche);
 			} else {
-				graphics2D.setColor(CACHE);
+				graphics2D.setColor(this.cache);
 			}
 
 			// segment 7

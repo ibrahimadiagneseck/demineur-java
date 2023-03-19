@@ -26,14 +26,14 @@ public class Graphisme {
 		 * couleurs[6] = violet (128, 0, 128)
 		 * couleurs[7] = noir (0, 0, 0)
 		 *******************************************/
-		couleurs[0] = new Color(0, 0, 255);
-		couleurs[1] = new Color(0, 128, 0);
-		couleurs[2] = new Color(255, 0, 0);
-		couleurs[3] = new Color(0, 0, 128);
-		couleurs[4] = new Color(128, 0, 0);
-		couleurs[5] = new Color(0, 128, 128);
-		couleurs[6] = new Color(128, 0, 128);
-		couleurs[7] = new Color(0, 0, 0);
+		this.couleurs[0] = new Color(0, 0, 255);
+		this.couleurs[1] = new Color(0, 128, 0);
+		this.couleurs[2] = new Color(255, 0, 0);
+		this.couleurs[3] = new Color(0, 0, 128);
+		this.couleurs[4] = new Color(128, 0, 0);
+		this.couleurs[5] = new Color(0, 128, 128);
+		this.couleurs[6] = new Color(128, 0, 128);
+		this.couleurs[7] = new Color(0, 0, 0);
 
 		Graphics2D graphics2D;
 

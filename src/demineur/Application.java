@@ -26,9 +26,9 @@ public class Application {
 		 * hauteur : 16,
 		 * largeur : 30,
 		 * nombre de mines : 99,
-		 * niveau : 1 Facile, 2 Moyenne, 3 Difficile, 4 personaliser
+		 * niveau : 1 Débutant, 2 Intermediaire, 3 Expert, 4 personaliser
 		 *******************************************************************/
-		new Demineur(16,30,99,3);
+		new Demineur(16, 30, 99, 3);
 		
 	}
 }

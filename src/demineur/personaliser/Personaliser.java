@@ -13,38 +13,38 @@ public class Personaliser extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	private GridBagLayout gridBagLayout1 = new GridBagLayout(); 
+	private GridBagLayout gridBagLayout = new GridBagLayout(); 
 	
-	private JPanel panel1 = new JPanel();
-	private JLabel jLabel1 = new JLabel();
-	private JLabel jLabel2 = new JLabel();
-	private JLabel jLabel3 = new JLabel();
+	private JPanel panel = new JPanel();
+	private JLabel hauteurjLabel = new JLabel();
+	private JLabel largeurjLabel = new JLabel();
+	private JLabel minesjLabel = new JLabel();
 	
-	private JTextField h = new JTextField();
-	private JTextField l = new JTextField();
-	private JTextField m = new JTextField();
+	private JTextField hauteurJTextField = new JTextField();
+	private JTextField largeurJTextField = new JTextField();
+	private JTextField minesJTextField = new JTextField();
 	
-	private Border border1;
+	private Border border;
 	
-	private JButton ok = new JButton();
-	private JButton cancel = new JButton();
+	private JButton boutonOk = new JButton();
+	private JButton boutonAnnuler = new JButton();
 
-	int H, L, M;
+	private int hauteur, largeur, mines;
 	
-	Demineur demineur;
+	private Demineur demineur;
 
 	public Personaliser(Frame frame, String title, boolean modal, int hauteur, int largeur, int mines) {
 		
 		super(frame, title, modal);
 		
-		H=hauteur;
-		L=largeur;
-		M=mines;
-		demineur = (Demineur) frame;
+		this.hauteur = hauteur;
+		this.largeur = largeur;
+		this.mines = mines;
+		this.demineur = (Demineur) frame;
 		
 		try {
 			jbInit();
-			pack();//ajuste la dimension de la fenetre automatiquement
+			pack(); // ajuste la dimension de la fenetre automatiquement
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
@@ -57,114 +57,125 @@ public class Personaliser extends JDialog implements ActionListener {
 	
 	private void jbInit() throws Exception {
 		
-		border1 = BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.white,Color.white,new Color(124, 124, 124),new Color(178, 178, 178));
+		this.border = BorderFactory.createBevelBorder(
+									BevelBorder.LOWERED,
+									Color.white,
+									Color.white,
+									new Color(124, 124, 124),
+									new Color(178, 178, 178));
 		
-		panel1.setLayout(gridBagLayout1);
+		this.panel.setLayout(this.gridBagLayout);
 		
-		jLabel1.setMaximumSize(new Dimension(70, 30));
-		jLabel1.setMinimumSize(new Dimension(70, 30));
-		jLabel1.setPreferredSize(new Dimension(70, 30));
-		jLabel1.setText("Hauteur :");
-		jLabel2.setMaximumSize(new Dimension(70, 30));
-		jLabel2.setMinimumSize(new Dimension(70, 30));
-		jLabel2.setPreferredSize(new Dimension(70, 30));
-		jLabel2.setToolTipText("");
-		jLabel2.setText("Largeur :");
-		jLabel3.setMaximumSize(new Dimension(70, 30));
-		jLabel3.setMinimumSize(new Dimension(70, 30));
-		jLabel3.setPreferredSize(new Dimension(70, 30));
-		jLabel3.setText("Mines :");
+		this.hauteurjLabel.setMaximumSize(new Dimension(70, 30));
+		this.hauteurjLabel.setMinimumSize(new Dimension(70, 30));
+		this.hauteurjLabel.setPreferredSize(new Dimension(70, 30));
+		this.hauteurjLabel.setText("Hauteur :");
 		
-		h.setBorder(border1);
-		h.setMinimumSize(new Dimension(40, 21));
-		h.setPreferredSize(new Dimension(40, 21));
-		h.setText(""+H);
+		this.largeurjLabel.setMaximumSize(new Dimension(70, 30));
+		this.largeurjLabel.setMinimumSize(new Dimension(70, 30));
+		this.largeurjLabel.setPreferredSize(new Dimension(70, 30));
+		this.largeurjLabel.setToolTipText("");
+		this.largeurjLabel.setText("Largeur :");
 		
-		l.setBorder(border1);
-		l.setMinimumSize(new Dimension(40, 21));
-		l.setPreferredSize(new Dimension(40, 21));
-		l.setText(""+L);
+		this.minesjLabel.setMaximumSize(new Dimension(70, 30));
+		this.minesjLabel.setMinimumSize(new Dimension(70, 30));
+		this.minesjLabel.setPreferredSize(new Dimension(70, 30));
+		this.minesjLabel.setText("Mines :");
 		
-		m.setBorder(border1);
-		m.setMinimumSize(new Dimension(40, 21));
-		m.setPreferredSize(new Dimension(40, 21));
-		m.setText(""+M);
+		this.hauteurJTextField.setBorder(this.border);
+		this.hauteurJTextField.setMinimumSize(new Dimension(40, 21));
+		this.hauteurJTextField.setPreferredSize(new Dimension(40, 21));
+		this.hauteurJTextField.setText("" + this.hauteur);
 		
-		ok.setMaximumSize(new Dimension(70, 27));
-		ok.setMinimumSize(new Dimension(70, 27));
-		ok.setPreferredSize(new Dimension(70, 27));
-		ok.setMnemonic('O');
-		ok.setText("OK");
-		ok.addActionListener(this);
+		this.largeurJTextField.setBorder(this.border);
+		this.largeurJTextField.setMinimumSize(new Dimension(40, 21));
+		this.largeurJTextField.setPreferredSize(new Dimension(40, 21));
+		this.largeurJTextField.setText("" + this.largeur);
 		
-		cancel.setMaximumSize(new Dimension(70, 27));
-		cancel.setMinimumSize(new Dimension(70, 27));
-		cancel.setPreferredSize(new Dimension(70, 27));
-		cancel.setMargin(new Insets(2, 10, 2, 10));
-		cancel.setMnemonic('A');
-		cancel.setText("Annuler");
-		cancel.addActionListener(this);
+		this.minesJTextField.setBorder(this.border);
+		this.minesJTextField.setMinimumSize(new Dimension(40, 21));
+		this.minesJTextField.setPreferredSize(new Dimension(40, 21));
+		this.minesJTextField.setText("" + this.mines);
+		
+		this.boutonOk.setMaximumSize(new Dimension(70, 27));
+		this.boutonOk.setMinimumSize(new Dimension(70, 27));
+		this.boutonOk.setPreferredSize(new Dimension(70, 27));
+		this.boutonOk.setMnemonic('O');
+		this.boutonOk.setText("OK");
+		this.boutonOk.addActionListener(this);
+		
+		this.boutonAnnuler.setMaximumSize(new Dimension(70, 27));
+		this.boutonAnnuler.setMinimumSize(new Dimension(70, 27));
+		this.boutonAnnuler.setPreferredSize(new Dimension(70, 27));
+		this.boutonAnnuler.setMargin(new Insets(2, 10, 2, 10));
+		this.boutonAnnuler.setMnemonic('A');
+		this.boutonAnnuler.setText("Annuler");
+		this.boutonAnnuler.addActionListener(this);
 		
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		
-		getContentPane().add(panel1);
+		getContentPane().add(panel);
 		
-		panel1.add(jLabel1,  new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
+		this.panel.add(this.hauteurjLabel,  new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		
-		panel1.add(jLabel2,  new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
+		this.panel.add(this.largeurjLabel,  new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		
-		panel1.add(jLabel3,  new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
+		this.panel.add(this.minesjLabel,  new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		
-		panel1.add(h,   new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0
+		this.panel.add(this.hauteurJTextField,   new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 20), 0, 0));
 		
-		panel1.add(l,   new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0
+		this.panel.add(this.largeurJTextField,   new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 20), 0, 0));
 		
-		panel1.add(m,   new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0
+		this.panel.add(this.minesJTextField,   new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 20), 0, 0));
 		
-		panel1.add(ok,  new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0
+		this.panel.add(this.boutonOk,  new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		
-		panel1.add(cancel,  new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0
+		this.panel.add(this.boutonAnnuler,  new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0
 				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		if (e.getSource()==ok) {
+		if (e.getSource() == this.boutonOk) {
 			
 			try {
 				
-				int nH=Integer.parseInt(h.getText());
+				int nHauteur = Integer.parseInt(this.hauteurJTextField.getText());
 				
 				//restrictions sur les dimensions et le nombre de mines
-				if (nH<1) nH=1;
-				if (nH>40) nH=40;
-				int nL=Integer.parseInt(l.getText());
-				if (nL<1) nL=1;
-				if (nL>40) nL=40;
-				int nMines=Integer.parseInt(m.getText());
-				if (nMines<0) nMines=0;
-				if (nMines>nL*nH) nMines=nL*nH;
+				if (nHauteur < 1) nHauteur = 1;
+				if (nHauteur > 40) nHauteur = 40;
+				
+				int nLargeur = Integer.parseInt(this.largeurJTextField.getText());
+				
+				if (nLargeur < 1) nLargeur = 1;
+				if (nLargeur > 40) nLargeur = 40;
+				
+				int nMines = Integer.parseInt(this.minesJTextField.getText());
+				
+				if (nMines < 0) nMines = 0;
+				if (nMines > nLargeur*nHauteur) nMines = nLargeur*nHauteur;
 				
 				demineur.dispose();// ferme la fenetre 
 				
 				System.gc();
 				
-				new Demineur(nH,nL,nMines,4);//lance le jeu
+				new Demineur(nHauteur, nLargeur, nMines, 4);//lance le jeu
 			}
 			catch (Exception exc) {//si erreur de saisie
 				this.setTitle("Valeurs incorrectes");
 			}
 		}
 		
-		if (e.getSource()==cancel) {
+		if (e.getSource() == this.boutonAnnuler) {
 			this.setVisible(false);
 		}
 	}

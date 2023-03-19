@@ -12,23 +12,23 @@ public class Temps implements Runnable {
 	private boolean threadSuspendu = false;
 
 	public Temps(Segment compteur) {
-		afficherSegment = compteur;
+		this.afficherSegment = compteur;
 	}
 	
 	public void run() {
 		
-		while (marche) {
+		while (this.marche) {
 			
 			try {
 				
 				Thread.sleep(1000);
 				
 				// si thread est suspendu on attend
-				if (threadSuspendu) {
+				if (this.threadSuspendu) {
 					
 					synchronized(this) {
 						
-						while (threadSuspendu) {
+						while (this.threadSuspendu) {
 							wait();
 						}
 					}
@@ -36,11 +36,11 @@ public class Temps implements Runnable {
 				
 			} catch(java.lang.InterruptedException e) {}
 			
-			int time = afficherSegment.getValeur();
+			int time = this.afficherSegment.getValeur();
 			
 			// si on arrive pas à 999, on incremente
 			if (marche && (time < 999)) {
-				afficherSegment.setValeur(time+1);
+				this.afficherSegment.setValeur(time+1);
 			}
 
 		}
@@ -48,31 +48,31 @@ public class Temps implements Runnable {
 	
 	public void start() {
 		
-		if (thread==null) {
-			thread = new Thread(this);
+		if (this.thread == null) {
+			this.thread = new Thread(this);
 		}
 		
-		thread.setPriority(Thread.MAX_PRIORITY);
-		thread.start();
+		this.thread.setPriority(Thread.MAX_PRIORITY);
+		this.thread.start();
 	}
 	
 	public void stop() {
 		
-		if (thread!=null) {
-			thread = null;
+		if (this.thread != null) {
+			this.thread = null;
 		}
 	}
 	
 	public void cancel() {
-		marche=false;
+		this.marche = false;
 	}
 	
 	public void suspend() {
-		threadSuspendu=true;
+		this.threadSuspendu = true;
 	}
 	
 	public synchronized void resume() { 
-		threadSuspendu=false; 
+		this.threadSuspendu = false; 
 		notify();
 	}
 }
