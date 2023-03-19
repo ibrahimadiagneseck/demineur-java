@@ -71,7 +71,7 @@ public class Apropos extends JDialog implements ActionListener {
 		
 		this.auteurs.setFont(new java.awt.Font("Dialog", 0, 18));
 		this.auteurs.setForeground(Color.white);
-		this.auteurs.setPreferredSize(new Dimension(450, 22));
+		this.auteurs.setPreferredSize(new Dimension(600, 22));
 		this.auteurs.setText("Réalisé par Ibrahima Diagne Seck et Oumou Hawa Diallo");
 		
 		this.github1.setFont(new java.awt.Font("Dialog", 0, 16));
@@ -92,8 +92,8 @@ public class Apropos extends JDialog implements ActionListener {
 		this.fermer.setText("Fermer");
 		this.fermer.addActionListener(this);
 		
-		this.espace1.setPreferredSize(new Dimension(470, 100));
-		this.espace2.setPreferredSize(new Dimension(470, 100));
+		this.espace1.setPreferredSize(new Dimension(600, 100));
+		this.espace2.setPreferredSize(new Dimension(600, 100));
 		
 		getContentPane().add(panel);
 		

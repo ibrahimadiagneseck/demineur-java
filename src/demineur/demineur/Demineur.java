@@ -79,6 +79,8 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 	 *************************************************************************************************************/
 	private JMenuItem menuNouveau = new JMenuItem("Nouveau");
 	private JMenuItem apropos = new JMenuItem("A propos");
+	private JMenuItem menuSauvegarder = new JMenuItem("Sauvegarder");
+	private JMenuItem menuStatistiques = new JMenuItem("Statistiques");
 
 	/***************************************************************************************
 	 * La classe JCheckBoxMenuItem est utilisée pour créer des éléments 
@@ -86,8 +88,6 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 	 * ils sont ajoutés à un menu déroulant ou à une barre de menus pour offrir des options 
 	 * ou des paramètres personnalisables à l'utilisateur.
 	 ***************************************************************************************/
-	JCheckBoxMenuItem menuSauvegarder = new JCheckBoxMenuItem("Sauvegarder");
-	JCheckBoxMenuItem menuStatistiques = new JCheckBoxMenuItem("Statistiques");
 	JCheckBoxMenuItem menuDebutant = new JCheckBoxMenuItem("Débutant");
 	JCheckBoxMenuItem menuIntermediaire = new JCheckBoxMenuItem("Intermédiaire");
 	JCheckBoxMenuItem menuExpert = new JCheckBoxMenuItem("Expert");
@@ -341,11 +341,11 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 	private void jbInit() throws Exception {
 
 		// Création d'une bordure gravée en blanc avec une couleur gris clair
-		bordure = BorderFactory.createEtchedBorder(Color.white, new Color(255, 178, 0));
+		bordure = BorderFactory.createEtchedBorder(Color.white, new Color(0, 0, 255));
 
 		// Création de boîtes "glue" pour le placement des éléments dans la fenêtre
 		box1 = Box.createHorizontalStrut(8); // Création d'un espace horizontal de 8 pixels
-		box1.setSize(5, 50); // Définition de la taille de la boîte
+		box1.setSize(10, 150); // Définition de la taille de la boîte
 		
 		box2 = Box.createGlue();
 		box3 = Box.createGlue();
@@ -357,8 +357,8 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		this.addWindowListener(this);
 
 		// Définition de la taille de la fenêtre en fonction du nombre de cases et de leur taille
-		int tailleX = this.nombreCasesLargeur * 16 + 20; //largeur de la fenetre
-		int tailleY = this.nombreCasesHauteur * 16 + 20;
+		int tailleX = this.nombreCasesLargeur * 16 + 290; //largeur de la fenetre
+		int tailleY = this.nombreCasesHauteur * 16 + 230;
 		if (tailleX < 160) tailleX = 150; //largeur minimum
 
 		// Définition de la taille de la fenêtre, du titre et de son non-redimensionnement
@@ -436,11 +436,14 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		nombreMines.setMaximumSize(new Dimension(49, 27)); // définit la taille maximale du composant "nombreMines"
 		nombreTemps.setMaximumSize(new Dimension(49, 27)); // définit la taille maximale du composant "nombreTemps"
 		
-		bouton.setMaximumSize(new Dimension(25, 25)); // définit la taille maximale du composant "bouton"
-		bouton.setMinimumSize(new Dimension(25, 25)); // définit la taille minimale du composant "bouton"
+		bouton.setText("Rejouer");
+		bouton.setFont(new Font("Arial", Font.BOLD, 12));
+		bouton.setForeground(Color.BLACK);
+		bouton.setMaximumSize(new Dimension(40, 40)); // définit la taille maximale du composant "bouton"
+		bouton.setMinimumSize(new Dimension(40, 40)); // définit la taille minimale du composant "bouton"
 		
 		entetecasesJeux.setBorder(bordure); // définit la bordure pour le conteneur "entetecasesJeux"
-		entetecasesJeux.setPreferredSize(new Dimension(450, 50)); // définit la taille préférée pour le conteneur "entetecasesJeux"
+		entetecasesJeux.setPreferredSize(new Dimension(550, 100)); // définit la taille préférée pour le conteneur "entetecasesJeux"
 		entetecasesJeux.setLayout(layoutentetecasesJeux); // définit le layout pour le conteneur "entetecasesJeux"
 		
 		corpscasesJeux.setBorder(bordure); // définit la bordure pour le conteneur "corpscasesJeux"
@@ -450,7 +453,7 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 		nombreMines.setValeur(nombreTotolMines); // définit la valeur du composant "nombreMines" à "nombreTotalMines"
 		nombreTemps.setValeur(0); // définit la valeur du composant "nombreTemps" à 0
 		
-		bouton.setPreferredSize(new Dimension(25, 25)); // définit la taille préférée du composant "bouton"
+		bouton.setPreferredSize(new Dimension(100, 100)); // définit la taille préférée du composant "bouton"
 		bouton.setFocusPainted(false); // désactive l'affichage de la bordure autour du bouton lorsqu'il est cliqué
 		bouton.setIcon(cool); // définit l'icône du bouton à "cool"
 		bouton.setMargin(new Insets(0, 0, 0, 0)); // définit la marge interne du bouton à 0
@@ -555,6 +558,7 @@ public class Demineur extends JFrame implements MouseListener, WindowListener, A
 				int temp = casesJeux[coordonnee[1]][coordonnee[0]].getEtatCase();
 				
 				switch (temp) {
+				
 					case 0: //affichage d'un drapeau
 						casesJeux[coordonnee[1]][coordonnee[0]].setEtatCase(2);
 						nombreDrapeauPoses++;
